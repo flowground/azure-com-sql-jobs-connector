@@ -1,0 +1,148 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serverName": {
+            "required": true,
+            "type": "string"
+        },
+        "jobAgentName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "ARM resource.",
+                            "properties": {
+                                "id": {
+                                    "description": "Resource ID.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Resource name.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Resource type.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object",
+                            "x-ms-azure-resource": true
+                        }
+                    ],
+                    "description": "ARM tracked top level resource.",
+                    "properties": {
+                        "location": {
+                            "description": "Resource location.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "location"
+                    ],
+                    "type": "object"
+                }
+            ],
+            "description": "An Azure SQL job agent.",
+            "properties": {
+                "properties": {
+                    "description": "Resource properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "databaseId": {
+                            "description": "Resource ID of the database to store job metadata in.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "state": {
+                            "description": "The state of the job agent.",
+                            "enum": [
+                                "Creating",
+                                "Ready",
+                                "Updating",
+                                "Deleting",
+                                "Disabled"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "JobAgentState"
+                            }
+                        }
+                    },
+                    "required": [
+                        "databaseId"
+                    ],
+                    "type": "object"
+                },
+                "sku": {
+                    "description": "The resource model definition representing SKU",
+                    "properties": {
+                        "capacity": {
+                            "description": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "family": {
+                            "description": "If the service has different generations of hardware, for the same SKU, then that can be captured here.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The name of the SKU. Ex - P3. It is typically a letter+number code",
+                            "type": "string"
+                        },
+                        "size": {
+                            "description": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. ",
+                            "type": "string"
+                        },
+                        "tier": {
+                            "description": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "location"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,662 @@
+{
+    "title": "SqlManagementClient",
+    "description": "The Azure SQL Database management API provides a RESTful set of web APIs that interact with Azure SQL Database services to manage your databases. The API enables users to create, retrieve, update, and delete databases, servers, and other entities.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/sql-jobs/2017-03-01-preview/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "JobAgents_ListByServer": {
+            "main": "./lib/actions/JobAgents_ListByServer.js",
+            "title": "Gets a list of job agents in a server.",
+            "description": "Gets a list of job agents in a server.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobAgents_ListByServer.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobAgents_Delete": {
+            "main": "./lib/actions/JobAgents_Delete.js",
+            "title": "Deletes a job agent.",
+            "description": "Deletes a job agent.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobAgents_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobAgents_Get": {
+            "main": "./lib/actions/JobAgents_Get.js",
+            "title": "Gets a job agent.",
+            "description": "Gets a job agent.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobAgents_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobAgents_Update": {
+            "main": "./lib/actions/JobAgents_Update.js",
+            "title": "Updates a job agent.",
+            "description": "Updates a job agent.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobAgents_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobAgents_CreateOrUpdate": {
+            "main": "./lib/actions/JobAgents_CreateOrUpdate.js",
+            "title": "Creates or updates a job agent.",
+            "description": "Creates or updates a job agent.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobAgents_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobCredentials_ListByAgent": {
+            "main": "./lib/actions/JobCredentials_ListByAgent.js",
+            "title": "Gets a list of jobs credentials.",
+            "description": "Gets a list of jobs credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobCredentials_ListByAgent.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobCredentials_Delete": {
+            "main": "./lib/actions/JobCredentials_Delete.js",
+            "title": "Deletes a job credential.",
+            "description": "Deletes a job credential.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobCredentials_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobCredentials_Get": {
+            "main": "./lib/actions/JobCredentials_Get.js",
+            "title": "Gets a jobs credential.",
+            "description": "Gets a jobs credential.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobCredentials_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobCredentials_CreateOrUpdate": {
+            "main": "./lib/actions/JobCredentials_CreateOrUpdate.js",
+            "title": "Creates or updates a job credential.",
+            "description": "Creates or updates a job credential.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobCredentials_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobExecutions_ListByAgent": {
+            "main": "./lib/actions/JobExecutions_ListByAgent.js",
+            "title": "Lists all executions in a job agent.",
+            "description": "Lists all executions in a job agent.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobExecutions_ListByAgent.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Jobs_ListByAgent": {
+            "main": "./lib/actions/Jobs_ListByAgent.js",
+            "title": "Gets a list of jobs.",
+            "description": "Gets a list of jobs.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Jobs_ListByAgent.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Jobs_Delete": {
+            "main": "./lib/actions/Jobs_Delete.js",
+            "title": "Deletes a job.",
+            "description": "Deletes a job.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Jobs_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Jobs_Get": {
+            "main": "./lib/actions/Jobs_Get.js",
+            "title": "Gets a job.",
+            "description": "Gets a job.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Jobs_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Jobs_CreateOrUpdate": {
+            "main": "./lib/actions/Jobs_CreateOrUpdate.js",
+            "title": "Creates or updates a job.",
+            "description": "Creates or updates a job.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Jobs_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobExecutions_ListByJob": {
+            "main": "./lib/actions/JobExecutions_ListByJob.js",
+            "title": "Lists a job's executions.",
+            "description": "Lists a job's executions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobExecutions_ListByJob.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobExecutions_Get": {
+            "main": "./lib/actions/JobExecutions_Get.js",
+            "title": "Gets a job execution.",
+            "description": "Gets a job execution.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobExecutions_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobExecutions_CreateOrUpdate": {
+            "main": "./lib/actions/JobExecutions_CreateOrUpdate.js",
+            "title": "Creates or updates a job execution.",
+            "description": "Creates or updates a job execution.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobExecutions_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobExecutions_Cancel": {
+            "main": "./lib/actions/JobExecutions_Cancel.js",
+            "title": "Requests cancellation of a job execution.",
+            "description": "Requests cancellation of a job execution.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobExecutions_Cancel.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobStepExecutions_ListByJobExecution": {
+            "main": "./lib/actions/JobStepExecutions_ListByJobExecution.js",
+            "title": "Lists the step executions of a job execution.",
+            "description": "Lists the step executions of a job execution.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobStepExecutions_ListByJobExecution.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobStepExecutions_Get": {
+            "main": "./lib/actions/JobStepExecutions_Get.js",
+            "title": "Gets a step execution of a job execution.",
+            "description": "Gets a step execution of a job execution.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobStepExecutions_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobTargetExecutions_ListByStep": {
+            "main": "./lib/actions/JobTargetExecutions_ListByStep.js",
+            "title": "Lists the target executions of a job step execution.",
+            "description": "Lists the target executions of a job step execution.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobTargetExecutions_ListByStep.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobTargetExecutions_Get": {
+            "main": "./lib/actions/JobTargetExecutions_Get.js",
+            "title": "Gets a target execution.",
+            "description": "Gets a target execution.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobTargetExecutions_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobTargetExecutions_ListByJobExecution": {
+            "main": "./lib/actions/JobTargetExecutions_ListByJobExecution.js",
+            "title": "Lists target executions for all steps of a job execution.",
+            "description": "Lists target executions for all steps of a job execution.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobTargetExecutions_ListByJobExecution.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobExecutions_Create": {
+            "main": "./lib/actions/JobExecutions_Create.js",
+            "title": "Starts an elastic job execution.",
+            "description": "Starts an elastic job execution.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobExecutions_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobSteps_ListByJob": {
+            "main": "./lib/actions/JobSteps_ListByJob.js",
+            "title": "Gets all job steps for a job's current version.",
+            "description": "Gets all job steps for a job's current version.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobSteps_ListByJob.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobSteps_Delete": {
+            "main": "./lib/actions/JobSteps_Delete.js",
+            "title": "Deletes a job step. This will implicitly create a new job version.",
+            "description": "Deletes a job step. This will implicitly create a new job version.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobSteps_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobSteps_Get": {
+            "main": "./lib/actions/JobSteps_Get.js",
+            "title": "Gets a job step in a job's current version.",
+            "description": "Gets a job step in a job's current version.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobSteps_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobSteps_CreateOrUpdate": {
+            "main": "./lib/actions/JobSteps_CreateOrUpdate.js",
+            "title": "Creates or updates a job step. This will implicitly create a new job version.",
+            "description": "Creates or updates a job step. This will implicitly create a new job version.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobSteps_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobVersions_ListByJob": {
+            "main": "./lib/actions/JobVersions_ListByJob.js",
+            "title": "Gets all versions of a job.",
+            "description": "Gets all versions of a job.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobVersions_ListByJob.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobVersions_Get": {
+            "main": "./lib/actions/JobVersions_Get.js",
+            "title": "Gets a job version.",
+            "description": "Gets a job version.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobVersions_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobSteps_ListByVersion": {
+            "main": "./lib/actions/JobSteps_ListByVersion.js",
+            "title": "Gets all job steps in the specified job version.",
+            "description": "Gets all job steps in the specified job version.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobSteps_ListByVersion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobSteps_GetByVersion": {
+            "main": "./lib/actions/JobSteps_GetByVersion.js",
+            "title": "Gets the specified version of a job step.",
+            "description": "Gets the specified version of a job step.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobSteps_GetByVersion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobTargetGroups_ListByAgent": {
+            "main": "./lib/actions/JobTargetGroups_ListByAgent.js",
+            "title": "Gets all target groups in an agent.",
+            "description": "Gets all target groups in an agent.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobTargetGroups_ListByAgent.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobTargetGroups_Delete": {
+            "main": "./lib/actions/JobTargetGroups_Delete.js",
+            "title": "Deletes a target group.",
+            "description": "Deletes a target group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobTargetGroups_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobTargetGroups_Get": {
+            "main": "./lib/actions/JobTargetGroups_Get.js",
+            "title": "Gets a target group.",
+            "description": "Gets a target group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobTargetGroups_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "JobTargetGroups_CreateOrUpdate": {
+            "main": "./lib/actions/JobTargetGroups_CreateOrUpdate.js",
+            "title": "Creates or updates a target group.",
+            "description": "Creates or updates a target group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/JobTargetGroups_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

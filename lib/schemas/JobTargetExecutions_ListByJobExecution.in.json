@@ -1,0 +1,66 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serverName": {
+            "required": true,
+            "type": "string"
+        },
+        "jobAgentName": {
+            "required": true,
+            "type": "string"
+        },
+        "jobName": {
+            "required": true,
+            "type": "string"
+        },
+        "jobExecutionId": {
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+        },
+        "createTimeMin": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "createTimeMax": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "endTimeMin": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "endTimeMax": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "isActive": {
+            "required": false,
+            "type": "boolean"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "_skip": {
+            "required": false,
+            "type": "integer"
+        },
+        "_top": {
+            "required": false,
+            "type": "integer"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

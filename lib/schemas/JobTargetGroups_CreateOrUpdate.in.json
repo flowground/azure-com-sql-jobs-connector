@@ -1,0 +1,137 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serverName": {
+            "required": true,
+            "type": "string"
+        },
+        "jobAgentName": {
+            "required": true,
+            "type": "string"
+        },
+        "targetGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "ARM resource.",
+                            "properties": {
+                                "id": {
+                                    "description": "Resource ID.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Resource name.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Resource type.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object",
+                            "x-ms-azure-resource": true
+                        }
+                    ],
+                    "description": "ARM proxy resource.",
+                    "properties": {},
+                    "type": "object"
+                }
+            ],
+            "description": "A group of job targets.",
+            "properties": {
+                "properties": {
+                    "description": "Resource properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "members": {
+                            "description": "Members of the target group.",
+                            "items": {
+                                "description": "A job target, for example a specific database or a container of databases that is evaluated during job execution.",
+                                "properties": {
+                                    "databaseName": {
+                                        "description": "The target database name.",
+                                        "type": "string"
+                                    },
+                                    "elasticPoolName": {
+                                        "description": "The target elastic pool name.",
+                                        "type": "string"
+                                    },
+                                    "membershipType": {
+                                        "default": "Include",
+                                        "description": "Whether the target is included or excluded from the group.",
+                                        "enum": [
+                                            "Include",
+                                            "Exclude"
+                                        ],
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": false,
+                                            "name": "JobTargetGroupMembershipType"
+                                        }
+                                    },
+                                    "refreshCredential": {
+                                        "description": "The resource ID of the credential that is used during job execution to connect to the target and determine the list of databases inside the target.",
+                                        "type": "string"
+                                    },
+                                    "serverName": {
+                                        "description": "The target server name.",
+                                        "type": "string"
+                                    },
+                                    "shardMapName": {
+                                        "description": "The target shard map.",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "The target type.",
+                                        "enum": [
+                                            "TargetGroup",
+                                            "SqlDatabase",
+                                            "SqlElasticPool",
+                                            "SqlShardMap",
+                                            "SqlServer"
+                                        ],
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": true,
+                                            "name": "JobTargetType"
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "members"
+                    ],
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

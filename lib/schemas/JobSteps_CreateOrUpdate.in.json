@@ -1,0 +1,222 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serverName": {
+            "required": true,
+            "type": "string"
+        },
+        "jobAgentName": {
+            "required": true,
+            "type": "string"
+        },
+        "jobName": {
+            "required": true,
+            "type": "string"
+        },
+        "stepName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "ARM resource.",
+                            "properties": {
+                                "id": {
+                                    "description": "Resource ID.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Resource name.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Resource type.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object",
+                            "x-ms-azure-resource": true
+                        }
+                    ],
+                    "description": "ARM proxy resource.",
+                    "properties": {},
+                    "type": "object"
+                }
+            ],
+            "description": "A job step.",
+            "properties": {
+                "properties": {
+                    "description": "Resource properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "action": {
+                            "description": "The action payload of the job step.",
+                            "properties": {
+                                "source": {
+                                    "default": "Inline",
+                                    "description": "The source of the action to execute.",
+                                    "enum": [
+                                        "Inline"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "JobStepActionSource"
+                                    }
+                                },
+                                "type": {
+                                    "default": "TSql",
+                                    "description": "Type of action being executed by the job step.",
+                                    "enum": [
+                                        "TSql"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "JobStepActionType"
+                                    }
+                                },
+                                "value": {
+                                    "description": "The action value, for example the text of the T-SQL script to execute.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "value"
+                            ],
+                            "type": "object"
+                        },
+                        "credential": {
+                            "description": "The resource ID of the job credential that will be used to connect to the targets.",
+                            "type": "string"
+                        },
+                        "executionOptions": {
+                            "description": "Execution options for the job step.",
+                            "properties": {
+                                "initialRetryIntervalSeconds": {
+                                    "default": 1,
+                                    "description": "Initial delay between retries for job step execution.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "maximumRetryIntervalSeconds": {
+                                    "default": 120,
+                                    "description": "The maximum amount of time to wait between retries for job step execution.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "retryAttempts": {
+                                    "default": 10,
+                                    "description": "Maximum number of times the job step will be reattempted if the first attempt fails.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "retryIntervalBackoffMultiplier": {
+                                    "default": 2,
+                                    "description": "The backoff multiplier for the time between retries.",
+                                    "format": "float",
+                                    "type": "number"
+                                },
+                                "timeoutSeconds": {
+                                    "default": 43200,
+                                    "description": "Execution timeout for the job step.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "output": {
+                            "description": "Output destination properties of the job step.",
+                            "properties": {
+                                "credential": {
+                                    "description": "The resource ID of the credential to use to connect to the output destination.",
+                                    "type": "string"
+                                },
+                                "databaseName": {
+                                    "description": "The output destination database.",
+                                    "type": "string"
+                                },
+                                "resourceGroupName": {
+                                    "description": "The output destination resource group.",
+                                    "type": "string"
+                                },
+                                "schemaName": {
+                                    "default": "dbo",
+                                    "description": "The output destination schema.",
+                                    "type": "string"
+                                },
+                                "serverName": {
+                                    "description": "The output destination server name.",
+                                    "type": "string"
+                                },
+                                "subscriptionId": {
+                                    "description": "The output destination subscription id.",
+                                    "format": "uuid",
+                                    "type": "string"
+                                },
+                                "tableName": {
+                                    "description": "The output destination table.",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "default": "SqlDatabase",
+                                    "description": "The output destination type.",
+                                    "enum": [
+                                        "SqlDatabase"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "JobStepOutputType"
+                                    }
+                                }
+                            },
+                            "required": [
+                                "serverName",
+                                "databaseName",
+                                "tableName",
+                                "credential"
+                            ],
+                            "type": "object"
+                        },
+                        "stepId": {
+                            "description": "The job step's index within the job. If not specified when creating the job step, it will be created as the last step. If not specified when updating the job step, the step id is not modified.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "targetGroup": {
+                            "description": "The resource ID of the target group that the job step will be executed on.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "targetGroup",
+                        "credential",
+                        "action"
+                    ],
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
